@@ -38,7 +38,8 @@ async function details(e){
         document.querySelector(".info").style.opacity = 0; 
         lod.innerText = "";
     }
-
+    
+    //Promise
     const fetchWithPromise = new Promise( (res,rej) => {
         if(id.value>10 || id.value<1)  rej("Some Error in Promise");
         else {
@@ -62,7 +63,7 @@ async function details(e){
         lod.innerText = "";
     })
 
-    /* 
+    /* fetch json 
     const url = `https://jsonplaceholder.typicode.com/photos/${id.value}`;
     fetch(url).then( (response) => response.json())
     .then( imgData => {
@@ -78,6 +79,24 @@ async function details(e){
         lod.innerText = "";
     })
     .finally(() => console.log("All Done"));
+    */
+
+    /*Async Await
+    const url = `https://jsonplaceholder.typicode.com/photos/${id.value}`;
+    const myPromise = async () => {
+        const response = await fetch(url);
+        const data = await response.json();
+        const {thumbnailUrl} = data;
+        imgg.setAttribute("src",thumbnailUrl);
+        imgg.addEventListener("load", (e)=> {
+            lod.innerText = "";
+        })
+    }
+    myPromise().catch( e => {
+        console.log(e);
+        imgg.removeAttribute("src");
+        lod.innerText = "";
+    })
     */
 }
 
