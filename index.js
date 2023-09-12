@@ -3,7 +3,7 @@ let id = document.querySelector("input");
 const imgg = document.querySelector('#image');
 const lod = document.querySelector("#loading");
 
-async function datafunc(e){
+async function details(e){
     imgg.removeAttribute("src");
     try {
         document.querySelector(".info").style.opacity = 1;
@@ -81,4 +81,4 @@ async function datafunc(e){
     */
 }
 
-fr.addEventListener("submit", datafunc);
+fr.addEventListener("submit", details);
