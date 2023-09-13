@@ -3,8 +3,11 @@ let id = document.querySelector("input");
 const imgg = document.querySelector('#image');
 const lod = document.querySelector("#loading");
 
+console.log("Start");
+
 async function details(e){
     imgg.removeAttribute("src");
+
     try {
         document.querySelector(".info").style.opacity = 1;
         document.getElementById("err").style.display = "none";
@@ -40,19 +43,28 @@ async function details(e){
     }
     
     //Promise
+
+    console.log("Middle");
+
     const fetchWithPromise = new Promise( (res,rej) => {
+        
+
         if(id.value>10 || id.value<1)  rej("Some Error in Promise");
         else {
             lod.innerText = "Loading..."; 
             setTimeout(() => {
+                console.log("inside promise settimout");
+
                 res(fetch(`https://jsonplaceholder.typicode.com/photos/${id.value}`)); 
             },1000);
+            console.log("inside promise");
         }    
     });
     fetchWithPromise.then( response => { return response.json() })
     .then( imgData => {
         const {thumbnailUrl} = imgData;
         imgg.setAttribute("src",thumbnailUrl);
+        console.log("inside then");
         imgg.addEventListener("load", (e)=> {
             lod.innerText = "";
         })
@@ -100,4 +112,10 @@ async function details(e){
     */
 }
 
+
+//console.log are used for event loop demonstrate
+
 fr.addEventListener("submit", details);
+
+
+console.log("End");
